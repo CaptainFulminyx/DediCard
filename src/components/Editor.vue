@@ -7,11 +7,13 @@
 <style scoped>
 textarea {
     width: 300px;
-    height: 400px;
+    height: 200px;
     resize: none;
-    border: 3px solid #fff;
-    background: #000;
-    text:#fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: #00000067;
+    color: #fff;
     outline: none;
+    padding: 5px;
 }
 </style>
