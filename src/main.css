@@ -1,34 +1,247 @@
-@import "tailwindcss";
-
-@theme {
-    --color-bg: #333339;
+/* ================================
+   1. CSS RESET + BASE
+================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.bg1 { background: #fde68a; }
-.bg2 { background: #bfdbfe; }
-.bg3 { background: #fecaca; }
-.bg4 { background: #ddd6fe; }
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
 
 body {
-    @apply m-0 p-0;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fafafa;
+  color: #111;
+  line-height: 1.6;
 }
 
-#app {
-    @apply w-screen min-h-screen bg-bg flex flex-col items-center justify-center text-white;
-    padding: 10px;
-}
-.app-header {
-    font-family: "Abril Fatface", serif;
-    @apply fixed top-2 p-2 pt-1 pb-1 w-full bg-bg border-[#fff] border-2;
-    font-size: clamp(35px, 5vw, 300px);
+/* ================================
+   2. TYPOGRAPHY SCALE
+================================ */
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 1.25;
 }
 
-.editor {
-    @apply bg-black w-70 h-50 resize-none border-2 border-[#333] outline-none rounded-2xl p-4;
-
-    transition: all 0.5s linear;
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
 }
 
-.editor:hover {
-    @apply w-72 h-52 border-[#666];
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+p {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* ================================
+   3. LAYOUT UTILITIES
+================================ */
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 2rem 1.5rem;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* ================================
+   4. FORM CONTROLS
+================================ */
+input,
+textarea,
+select {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Range sliders */
+input[type="range"] {
+  padding: 0;
+}
+
+/* ================================
+   5. BUTTON SYSTEM
+================================ */
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  background: #f3f4f6;
+  transition: all 0.15s ease;
+}
+
+button:hover {
+  background: #e5e7eb;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* Primary button */
+button.primary {
+  background: #111;
+  color: #fff;
+}
+
+button.primary:hover {
+  background: #000;
+}
+
+/* ================================
+   6. HERO SECTION
+================================ */
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero p {
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+/* ================================
+   7. WORKSPACE LAYOUT
+================================ */
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================
+   8. CARD PREVIEW (CORE)
+================================ */
+.card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 2.5rem;
+  border-radius: 28px;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.card h1 {
+  font-size: 2rem;
+}
+
+.card p {
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
+/* ================================
+   9. TEMPLATE / BG PICKERS
+================================ */
+.template-list button {
+  text-align: left;
+  font-weight: 500;
+}
+
+.bg-grid button {
+  height: 42px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.bg-grid button:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
+   10. PREVIEW SIDEBAR
+================================ */
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.preview section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+/* ================================
+   11. FOOTER
+================================ */
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  margin-top: 4rem;
+}
+
+/* ================================
+   12. SCROLLBAR (DESKTOP POLISH)
+================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
 }
