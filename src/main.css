@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-@themes {
-    --color-bg: #fff;
+@theme {
+    --color-bg: #333339;
 }
 
 body {
@@ -9,8 +9,13 @@ body {
 }
 
 #app {
-    @apply w-screen min-h-screen bg-[#0a061d] flex flex-col items-center justify-center text-white;
+    @apply w-screen min-h-screen bg-bg flex flex-col items-center justify-center text-white;
+    padding: 10px;
+}
+.app-header {
     font-family: "Abril Fatface", serif;
+    @apply fixed top-2 p-2 pt-1 pb-1 w-full bg-bg border-[#fff] border-2;
+    font-size: clamp(35px, 5vw, 300px);
 }
 
 .editor {

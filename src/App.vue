@@ -3,10 +3,8 @@ import Editor from "$/Editor.vue";
 </script>
 
 <template>
-    <h1>DediCard</h1>
+    <div class="app-header"><h1>DediCard</h1></div>
     <Editor />
 </template>
 
-<style scoped>
-  
-</style>
+<style scoped></style>
