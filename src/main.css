@@ -1,13 +1,24 @@
+@import "tailwindcss";
+
+@themes {
+    --color-bg: #fff;
+}
+
 body {
-    background: #0a061d;
-    margin: 0;
-    padding: 0;
+    @apply m-0 p-0;
 }
 
 #app {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @apply w-screen min-h-screen bg-[#0a061d] flex flex-col items-center justify-center text-white;
+    font-family: "Abril Fatface", serif;
+}
+
+.editor {
+    @apply bg-black w-70 h-50 resize-none border-2 border-[#333] outline-none rounded-2xl p-4;
+
+    transition: all 0.5s linear;
+}
+
+.editor:hover {
+    @apply w-72 h-52 border-[#666];
 }

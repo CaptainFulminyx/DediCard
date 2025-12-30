@@ -3,7 +3,10 @@ import Editor from "$/Editor.vue";
 </script>
 
 <template>
-  <Editor />
+    <h1>DediCard</h1>
+    <Editor />
 </template>
 
-<style scoped></style>
+<style scoped>
+  
+</style>
