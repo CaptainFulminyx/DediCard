@@ -5,7 +5,7 @@ const store = useCardStore();
 
 <template>
     <section class="panel">
-        <h4>Message</h4>
+        <h4>Message...</h4>
 
         <input
             v-model="store.content.title"
