@@ -1,247 +1,612 @@
 /* ================================
-   1. CSS RESET + BASE
+   1. CSS RESET + BASE (Modernized)
 ================================ */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --accent: #06b6d4;
+    --surface: #ffffff;
+    --surface-alt: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #94a3b8;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
-  -webkit-font-smoothing: antialiased;
-  scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #fafafa;
-  color: #111;
-  line-height: 1.6;
+    font-family:
+        "Inter",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* ================================
-   2. TYPOGRAPHY SCALE
+   2. TYPOGRAPHY SCALE (Modern)
 ================================ */
-h1, h2, h3, h4 {
-  margin: 0;
-  line-height: 1.25;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
 }
 
 h1 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 700;
+    font-size: clamp(2rem, 5vw, 3rem);
+    background: linear-gradient(
+        135deg,
+        var(--text-primary) 0%,
+        var(--text-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 h2 {
-  font-size: 1.4rem;
-  font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-primary);
 }
 
 h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  opacity: 0.85;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 p {
-  margin: 0.25rem 0 0;
-  font-size: 0.95rem;
-  color: #444;
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.lead {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    opacity: 0.9;
 }
 
 /* ================================
    3. LAYOUT UTILITIES
 ================================ */
 .container {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding: 2rem 1.5rem;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding: 2rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 3rem 2rem;
+    }
 }
 
 .panel {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 1rem;
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.04),
-    0 2px 6px rgba(0, 0, 0, 0.04);
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-bottom: 5px solid #1a2334;
+    transition: var(--transition);
+}
+
+.panel:hover {
+    border-bottom: 5px solid #1a2334;
 }
 
 /* ================================
-   4. FORM CONTROLS
+   4. FORM CONTROLS (Modern)
 ================================ */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
 input,
 textarea,
 select {
-  width: 100%;
-  font-family: inherit;
-  font-size: 0.95rem;
-  padding: 0.6rem 0.7rem;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  outline: none;
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border);
+    background: var(--surface);
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
 }
 
 textarea {
-  resize: none;
+    resize: vertical;
+    min-height: 100px;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: var(--text-tertiary);
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    border-color: var(--primary);
+
+    transform: translateY(-1px);
 }
 
 /* Range sliders */
 input[type="range"] {
-  padding: 0;
+    padding: 0;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border);
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    border: 3px solid white;
 }
 
 /* ================================
-   5. BUTTON SYSTEM
+   5. BUTTON SYSTEM (Modern)
 ================================ */
-button {
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-  font-size: 0.9rem;
-  border-radius: 12px;
-  padding: 0.5rem 0.75rem;
-  background: #f3f4f6;
-  transition: all 0.15s ease;
+.btn {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.5rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    letter-spacing: 0.01em;
 }
 
-button:hover {
-  background: #e5e7eb;
+.btn:hover {
+    transform: translateY(-2px);
 }
 
-button:active {
-  transform: scale(0.97);
+.btn:active {
+    transform: translateY(0);
 }
 
-/* Primary button */
-button.primary {
-  background: #111;
-  color: #fff;
+.btn-primary {
+    background: linear-gradient(
+        135deg,
+        var(--primary) 0%,
+        var(--secondary) 100%
+    );
+    color: white;
+    border-bottom: 5px solid #1a2334;
 }
 
-button.primary:hover {
-  background: #000;
+.btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        var(--primary-dark) 0%,
+        var(--primary) 100%
+    );
+    border-bottom: 5px solid #1a2334;
+}
+
+.btn-secondary {
+    background: var(--surface-alt);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--border-light);
+    border-color: var(--text-tertiary);
+}
+
+.btn-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    color: var(--text-secondary);
+}
+
+.btn-icon:hover {
+    background: var(--border-light);
+    color: var(--primary);
 }
 
 /* ================================
    6. HERO SECTION
 ================================ */
 .hero {
-  text-align: center;
-  margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 1rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero p {
-  margin-top: 0.5rem;
-  opacity: 0.7;
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.hero h1 {
+    margin-bottom: 1rem;
+}
+
+.hero .lead {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    opacity: 0.8;
 }
 
 /* ================================
    7. WORKSPACE LAYOUT
 ================================ */
 .workspace {
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
 }
 
-@media (max-width: 900px) {
-  .workspace {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 1024px) {
+    .workspace {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 }
 
 /* ================================
-   8. CARD PREVIEW (CORE)
+   8. CARD PREVIEW (Modern)
 ================================ */
+.card-preview {
+    position: sticky;
+    top: 2rem;
+}
+
 .card {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  padding: 2.5rem;
-  border-radius: 28px;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.75rem;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    padding: 3rem;
+    border-radius: var(--radius-xl);
+    border-bottom: 5px solid #1a2334;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    pointer-events: none;
 }
 
 .card h1 {
-  font-size: 2rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-text-fill-color: white;
+    background: none;
 }
 
 .card p {
-  font-size: 1.05rem;
-  opacity: 0.85;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
 }
 
 /* ================================
    9. TEMPLATE / BG PICKERS
 ================================ */
-.template-list button {
-  text-align: left;
-  font-weight: 500;
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.template-grid button {
+    text-align: left;
+    font-weight: 500;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.template-grid button:hover {
+    background: var(--surface);
+    border-color: var(--border);
+    transform: translateY(-2px);
+}
+
+.template-grid button.active {
+    background: var(--surface);
+    border-color: var(--primary);
+    border-bottom: 5px solid #1a2334;
+}
+
+.bg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
 }
 
 .bg-grid button {
-  height: 42px;
-  border-radius: 10px;
-  border: 2px solid transparent;
+    height: 48px;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
+}
+
+.bg-grid button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    
 }
 
 .bg-grid button:hover {
-  border-color: rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    border-color: var(--text-primary);
+}
+
+.bg-grid button.active {
+    border-color: var(--primary);
+    border-bottom: 5px solid #1a2334;
 }
 
 /* ================================
-   10. PREVIEW SIDEBAR
+   10. CONTROL SIDEBAR
 ================================ */
-.preview {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.control-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.preview section {
-  background: #fff;
-  border-radius: 16px;
-  padding: 1rem;
+.control-section {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-bottom: 5px solid #1a2334;
+    transition: var(--transition);
+}
+
+.control-section:hover {
+    border-color: var(--border);
+    border-bottom: 5px solid #1a2334;
+}
+
+.control-section h3 {
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+.control-section h3::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    border-radius: 2px;
 }
 
 /* ================================
-   11. FOOTER
+   11. ACTION BAR
+================================ */
+.action-bar {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ================================
+   12. FOOTER (Modern)
 ================================ */
 footer {
-  text-align: center;
-  font-size: 0.85rem;
-  opacity: 0.6;
-  margin-top: 4rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    margin-top: 5rem;
+    padding: 2rem 1rem;
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
 /* ================================
-   12. SCROLLBAR (DESKTOP POLISH)
+   13. UTILITY CLASSES
+================================ */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.shadow-glow {
+    border-bottom: 5px solid #1a2334;
+}
+
+/* ================================
+   14. SCROLLBAR (Modern)
 ================================ */
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-alt);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 10px;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    border-radius: 5px;
+    border: 2px solid var(--surface-alt);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+}
+
+/* ================================
+   15. ANIMATIONS
+================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* ================================
+   16. DARK MODE READY
+================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #818cf8;
+        --primary-dark: #6366f1;
+        --surface: #1e293b;
+        --surface-alt: #0f172a;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-tertiary: #64748b;
+        --border: #334155;
+        --border-light: #1e293b;
+    }
+
+    body {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .card {
+        border-bottom: 5px solid #1a2334;
+    }
 }
